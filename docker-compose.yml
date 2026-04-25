@@ -1,10 +1,15 @@
 services:
-  mongo:
-    container_name: db
-    image: mongo
-    restart: always
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: rootpass      
+  redis:
+    image: redis:latest
+    container_name: redis-aula
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes
+
+volumes:
+  redis-data:   
 
 # PARA CRIAR O COMPOSE PODEMOS BUSCAR EM DOCKERHUB
+# Subir o container docker compose up -d
